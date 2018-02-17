@@ -1,0 +1,15 @@
+#include <stack>
+#include <iostream>
+#include <cstdlib>
+#include "Deck.h"
+#include <vector>
+#include <stack>
+Deck::Deck()
+{
+
+}
+
+void Deck::shuffel()
+{
+
+}

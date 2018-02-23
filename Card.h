@@ -5,13 +5,15 @@ using namespace std;
 class Card
 {
 public:
-	Card(int,string);
+	Card(int,char);
 	~Card();
 	void Show();
+	int QNumber();
+	char QSuit(); 
 private:
 	/* data */
 	int Number;
-	string Suit;
+	char Suit;
 };
 
 #endif /* ifndef SYMBOL */

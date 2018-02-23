@@ -1,9 +1,7 @@
 #include "Card.h"
-#include <string>
-#include <iostream>
 #include <iostream>
 
-Card::Card(int value, string suit)
+Card::Card(int value, char suit)
 {
 	Number = value;
 	Suit   = suit;
@@ -11,9 +9,15 @@ Card::Card(int value, string suit)
 
 void Card::Show()
 {
-	cout << Number << " of " << Suit << endl;
+	cout << "| "<< Number <<  Suit << " | " ;
 }
 
 Card::~Card()
 {
+}
+int Card::QNumber(){
+	return Number;
+}
+char Card::QSuit(){
+	return Suit;
 }

@@ -8,7 +8,7 @@ texas: run.o Texas.o Board.o Hand.o Deck.o Card.o
 run.o: run.cpp
 	g++ -c run.cpp
 
-Texas.o: Texas.cpp Texas.h 
+Texas.o: Texas.h Texas.cpp 
 	g++ -c Texas.cpp
 
 Hand.o: Hand.h Hand.cpp

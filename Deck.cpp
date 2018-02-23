@@ -9,7 +9,7 @@
 Deck::Deck()
 {
 	Card* crdptr = NULL;
-	string suits[] = {"Clubs","Spades","Hearts","Diamonds"};
+	char suits[] = {'C','S','H','D'};
 	for (int i = 0; i < 4; i++) { for (int j = 1; j < 15; j++) {
 				deck.push(new Card(j,suits[i]));	
 			}
@@ -51,4 +51,7 @@ void Deck::shuffle()
 	deck.push(space.back());
 	space.pop_back();
 
+}
+void Deck::take(Card* card){
+	deck.push(card);
 }

@@ -1,0 +1,43 @@
+#include "Board.h"
+
+Board::Board(int NumPlayers){	// Initialized with number of players
+	for (int i = 0; i < NumPlayers; i++) {
+		Hands.push_back(new Hand());
+	}
+}
+
+void Board::AddHand(){
+	Hands.push_back(new Hand());	
+}
+
+void Board::RemoveHand(int PlayerNum){
+	Hands.erase(Hands.begin() + PlayerNum);
+}	
+
+void Board::GiveCard(int PlayerNum, Card* card){
+	Hands[PlayerNum] -> TakeCard(card);
+}
+
+Card* Board::TakeCard(int PlayerNum){
+	Card* holder = Hands[PlayerNum]-> GiveCard();
+	Hands.pop_back();
+	return holder;
+}	
+
+void Board::TableFlip(Card* FlipIt){
+	Table.push_back(FlipIt);
+}
+
+void Board::ShowHand(int PlayerNum){
+	Hands[PlayerNum] -> ShowHand();
+}
+
+Card* Board::TakeTableCard(){
+	Card* Holder = NULL;
+	Holder = Table.back();
+	Table.pop_back();
+	return Holder;
+}
+void Board::ShowTableCard(int CardNum){
+	Table[CardNum]-> Show();
+}

@@ -11,6 +11,7 @@ public:
 	void shuffle();
 	void show_all();
 	Card* flip();
+	void take(Card*);
 private:
 	/* data */
 	std::stack<Card*> deck;

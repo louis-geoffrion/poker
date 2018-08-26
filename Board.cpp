@@ -109,59 +109,63 @@ vector<int> Board::CheckFlush(){
 	}
 	return Flushes;
 }
+
 vector<int> Board::CheckStraight(){
 	vector<int> Straights;
-	vector<int> SortedCards;
+	vector<int> Cards;
 	Card * Holder = NULL;
-	for (int i = 0; i < Hands.size(); i++) {
-		for (int j = 0; j < 5; j++) {
-			SortedCards.push_back(j);//Table[j]->QNumber());
-			cout << "Add table card" << j << endl;
+	int increment = 0;
+	int duplicates =0;
+	int diff = 0;
+	for (int PNum = 0;PNum < Hands.size();PNum++){
+		for (int i = 0; i < 5; i++) {
+			Cards.push_back(Table[i]->QNumber());
 		}
-		for (int j = 0; j < 2; j++) {
-			Holder = Hands[i]->AccessCard(j);
-			SortedCards.push_back(Holder->QNumber());
-			cout << "add hand card " << j << endl;
+		for (int i = 0; i < 2; i++) {
+			Holder = Hands[PNum]->AccessCard(i);
+			Cards.push_back(Holder->QNumber());
 		}
-		sort (SortedCards.begin(),SortedCards.begin()+7);
-		int diff = 0;
-		int duplicates = 0;
-		for (int h = 0;h  < SortedCards.size()-1-duplicates; h++) {
-			if (SortedCards[h+1]-SortedCards[h]);
-			else {
-				SortedCards.erase(SortedCards.begin()+h);	
+		sort(Cards.begin(),Cards.begin()+7);
+		for (int i = 6; i > 0; i--) {
+			diff = Cards[i]-Cards[i-1];
+			if (diff == 0){
+				Cards.erase(Cards.begin()+i);
 				duplicates++;
-				h--;
 			}
 		}
-		cout << "removed duplicates" << endl;
-		for (int k = 0; k < 3-duplicates; k++) {
-			diff = SortedCards[k+1]-SortedCards[k];
-			if (diff == 1){
-				cout << "1st card matches" << endl;
-				diff = SortedCards[k+2]-SortedCards[k+1];
-				if (diff == 1) {
-					cout << "2nd card matches" << endl;
-					diff = SortedCards[k+3]-SortedCards[k+2];
-					if (diff == 1){
-						cout << "3rd card matches" << endl;
-						diff = SortedCards[k+4]-SortedCards[k+3];
-						if (diff == 1){
-							Straights.push_back(i);
-							cout << "4th and 5th card match" << endl;
-						}
-					}
-				}
+		for (int i = 0; i < 3 - duplicates; i++) {
+			for (int j = 0; j < 4; j++) {
+				diff = Cards[i+j+1]-Cards[i+j];
+				if (diff == 1)
+					increment ++;	
 			}
+			if (increment == 4)
+				Straights.push_back(PNum);
+			increment =0;
 		}
-		for (int l = 0; l < 7; l++) {
-			SortedCards.pop_back();
+		for (int i = 0; i < 7 - duplicates; i++) {
+			Cards.pop_back();	
 		}
-			
+		duplicates = 0;
 	}
 	for (int i = 0; i < Straights.size(); i++) {
-		cout << "Player " <<  Straights[i] << " has a straight" <<  endl;
+		cout << "Player " << Straights[i] << "Has a straight" << endl;
+		
 	}
 	return Straights;
 }
 
+vector<pair<int,int> > Board::CheckPairs(){
+	vector<pair<int,int> > Pairs;
+	vector<int> Cards;
+	Card * Holder = NULL;
+	int PNum = 0;
+	for (int i = 0; i < 5; i++) {
+		Cards.push_back(Table[i]->QNumber());
+	}
+	for (int i = 0; i < 2; i++) {
+		Holder = Hands[PNum]->AccessCard(i);
+		Cards.push_back(Holder->QNumber());
+	}
+	return Pairs;
+}

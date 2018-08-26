@@ -3,7 +3,7 @@
 #include "Texas.h"
 #include <string>
 using namespace std;
-void BuildScreen(Texas*);
+void BuildScreen(Texas*,int);
 int main(int argc, const char *argv[])
 {
 	system("clear");
@@ -15,35 +15,38 @@ int main(int argc, const char *argv[])
 	int flop = 0;
 	Game -> Deal();
 	system("clear");
-	BuildScreen(Game);
+	BuildScreen(Game,NumPlayers);
 	cout << "Press 1 to see the flop";
 	cin >> flop ;
 	system("clear");
 	Game -> Flop();	
-	BuildScreen(Game);	
+	BuildScreen(Game,NumPlayers);	
 	cout  <<  "Press 1 to see the turn" << endl;
 	flop = 0;
 	cin >> flop;
 	flop = 0;
 	system("Clear");
 	Game -> Turn();
-	BuildScreen(Game);
+	BuildScreen(Game,NumPlayers);
 	cout << "Turn" << endl;
 	cout << "Press 1 to see the river" << endl;
 	flop = 0;
 	cin >> flop;
 	system("Clear");
 	Game -> River();
-	BuildScreen(Game);
+	BuildScreen(Game,NumPlayers);
 	cout << "River" << endl;
 	Game -> CheckStraight();
 	Game -> CheckFlush();	
 	Game -> ValidateFlush();
 	Game -> ValidateStraight();
 }
-void BuildScreen (Texas* Game) {
+void BuildScreen (Texas* Game,int NumP) {
 	cout << "TEXAS HOLDEM" << endl << endl;
 	Game -> ShowTable();
-	Game -> ShowHand(1);
+	for (int i = 0; i < NumP; i++){ 
+		cout << "Player " << i << " :   " ;
+		Game -> ShowHand(i);
+	}
 	cout << endl << endl;
 }

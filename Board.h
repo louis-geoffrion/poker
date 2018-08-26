@@ -18,6 +18,8 @@ public:
 	void ShowTableCard(int);
 	bool StraightPoss();
 	bool FlushPoss();
+	vector<pair<int,int> > CheckPairs();
+	vector<int> CheckPair();
 	vector<int> CheckFlush();
 	vector<int> CheckStraight();
 private:

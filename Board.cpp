@@ -82,19 +82,19 @@ vector<int> Board::CheckFlush(){
 	vector<int> Flushes;
 	vector<char> SortedCards;
 	Card * Holder = NULL;
-	for (int i = 0; i < Hands.size(); i++) {
-		for (int j = 0; j < 5; j++) {
+	for (int i = 0; i < Hands.size(); i++) {				// Looop Through Each Hand
+		for (int j = 0; j < 5; j++) {									// Push cards from Table into array
 			SortedCards.push_back(Table[j]->QSuit());
 		}
-		for (int j = 0; j < 2; j++) {
+		for (int j = 0; j < 2; j++) {									// Push Cards from Hand into array
 			Holder = Hands[i]->AccessCard(j);
 			SortedCards.push_back(Holder->QSuit());
 		}
-		sort (SortedCards.begin(),SortedCards.begin()+7);
-		for (int i = 0; i < 4; i++) {
-			if (SortedCards[i] == SortedCards[i+1])
-				if (SortedCards[i+1] == SortedCards[i+2])
-					if (SortedCards[i+2] == SortedCards[i+3])
+		sort (SortedCards.begin(),SortedCards.begin()+7);	// Sort cards by suit
+		for (int k = 0; k < 4; k++) {											// Checking 4 cards at a time
+			if (SortedCards[k] == SortedCards[k+1])
+				if (SortedCards[k+1] == SortedCards[k+2])
+					if (SortedCards[k+2] == SortedCards[k+3])
 						Flushes.push_back(i);
 		}
 		for (int i = 0; i < 7; i++) {

@@ -1,3 +1,16 @@
+/////////////////////////////////////////////////////////////
+//
+// \class Texas 
+// \brief Texas Holdem structure and funcions
+// Texas Holdem Class
+// Offers all functionality to run a game of texas holdem
+// Contains a deck of cards and a board at which players sit
+// Each players cards are stored on the board. See board class
+// Number of players can be initialized in the construcor
+// currently supports checking of Flush and straight
+//
+/////////////////////////////////////////////////////////////
+
 #include "Deck.h"
 #include "Board.h"
 #include "Hand.h"
@@ -7,7 +20,7 @@
 class Texas
 {
 public:
-	Texas(int);
+	Texas(int);		// Pass number of inital players 
 	~Texas();
 	void Deal();	
 	void Flop();
@@ -16,7 +29,7 @@ public:
 	void Shuffle();
 	void Reset();
 	void ShowTable();
-	void ShowHand(int);
+	void ShowHand(int);		// Pass player number 
 	void CheckStraight();
 	void CheckFlush();
 	void ValidateFlush();
